@@ -1,4 +1,3 @@
-import sys
 import pygame
 from constants import *
 from player import *
@@ -19,9 +18,11 @@ def main():
       if event.type == pygame.QUIT:
         return
     screen.fill("black")
+    player.update(delta_time)
     player.draw(screen)
     pygame.display.flip()
     delta_time = clock.tick(60) / 1000
+    # print(delta_time)
 
 if __name__ == "__main__": 
   main()
