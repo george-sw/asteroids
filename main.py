@@ -1,6 +1,8 @@
 import pygame as pg
 from constants import *
 from player import *
+from asteroid import *
+from asteroidfield import *
 
 def main():
   # print(sys.prefix != sys.base_prefix, sys.prefix, sys.base_prefix)
@@ -11,9 +13,16 @@ def main():
   running = True
   clock = pg.time.Clock()
   delta_time = 0
+
   updatable = pg.sprite.Group()
   drawable = pg.sprite.Group()
-  Player.containers = updatable, drawable
+  asteroids = pg.sprite.Group()
+
+  Asteroid.containers = (asteroids, updatable, drawable)
+  AsteroidField.containers = (updatable)
+  asteroid_field = AsteroidField()
+
+  Player.containers = (updatable, drawable)
   player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
   while running:
