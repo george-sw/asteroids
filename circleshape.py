@@ -20,3 +20,8 @@ class CircleShape(pg.sprite.Sprite):
     def update(self, dt):
         # sub-classes must override
         pass
+    
+    def is_colliding(self, foreign):
+        distance = pg.math.Vector2.distance_to(self.position, foreign.position)
+        if distance > (self.radius + foreign.radius): return False
+        return True

@@ -1,3 +1,5 @@
+# nvim lesson 2.5
+import sys
 import pygame as pg
 from constants import *
 from player import *
@@ -32,6 +34,11 @@ def main():
     for game_object in updatable:
       game_object.update(delta_time)
     screen.fill("black")
+    for game_object in asteroids:
+      if game_object.is_colliding(player):
+        print("Game Over!")
+        return
+        # sys.exit()
     for game_object in drawable:
       game_object.draw(screen)
     pg.display.flip()
