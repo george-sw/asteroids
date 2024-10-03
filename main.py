@@ -34,6 +34,16 @@ def main():
 
   # Shot.containers = (updatable, drawable)
 
+  # notes on typical game loop structure from Boots
+
+  # while running:
+    # Handle events
+    # Update game logic
+    # Clear the screen
+    # Draw all game objects
+    # Update the display
+
+
   while running:
     for event in pg.event.get():
       if event.type == pg.QUIT:
@@ -43,9 +53,11 @@ def main():
     screen.fill("black")
     for game_object in asteroids:
       if game_object.is_colliding(player):
-        # print("Game Over!")
-        # sys.exit()
         sys.exit("Game Over!")
+      for shot_object in shots:
+        if game_object.is_colliding(shot_object):
+          game_object.kill()
+          shot_object.kill()
     for game_object in drawable:
       game_object.draw(screen)
     pg.display.flip()
