@@ -11,3 +11,6 @@ class Asteroid(CircleShape):
   def update(self, dt):
     # not sure about this?
     self.position += self.velocity * dt
+
+  def split(self):
+    self.kill()

@@ -56,7 +56,7 @@ def main():
         sys.exit("Game Over!")
       for shot_object in shots:
         if game_object.is_colliding(shot_object):
-          game_object.kill()
+          game_object.split()
           shot_object.kill()
     for game_object in drawable:
       game_object.draw(screen)
