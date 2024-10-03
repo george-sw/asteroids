@@ -5,6 +5,7 @@ from constants import *
 from player import *
 from asteroid import *
 from asteroidfield import *
+from shot import *
 
 def main():
   # print(sys.prefix != sys.base_prefix, sys.prefix, sys.base_prefix)
@@ -19,6 +20,7 @@ def main():
   updatable = pg.sprite.Group()
   drawable = pg.sprite.Group()
   asteroids = pg.sprite.Group()
+  shots = pg.sprite.Group()
 
   Asteroid.containers = (asteroids, updatable, drawable)
   AsteroidField.containers = (updatable)
@@ -26,6 +28,11 @@ def main():
 
   Player.containers = (updatable, drawable)
   player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
+  Shot.containers = (shots, updatable, drawable)
+
+
+  # Shot.containers = (updatable, drawable)
 
   while running:
     for event in pg.event.get():
@@ -36,9 +43,9 @@ def main():
     screen.fill("black")
     for game_object in asteroids:
       if game_object.is_colliding(player):
-        print("Game Over!")
-        return
+        # print("Game Over!")
         # sys.exit()
+        sys.exit("Game Over!")
     for game_object in drawable:
       game_object.draw(screen)
     pg.display.flip()
